@@ -1,4 +1,4 @@
-import "alpinejs"
+import Alpine from "alpinejs"
 
 // Bring phoenix_html to deal with method=PUT/DELETE in forms and buttons
 import "phoenix_html"
@@ -6,8 +6,20 @@ import { Socket } from "phoenix"
 import LiveSocket from "phoenix_live_view"
 import NProgress from "nprogress"
 
+window.Alpine = Alpine
+Alpine.start()
+
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
-let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}})
+let liveSocket = new LiveSocket("/live", Socket, {
+    params: { _csrf_token: csrfToken },
+    dom: {
+        onBeforeElUpdated(from, to) {
+            if (from._x_dataStack) {
+                window.Alpine.clone(from, to);
+            }
+        }
+    }
+})
 
 // connect if there are any LiveViews on the page
 liveSocket.connect()
