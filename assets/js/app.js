@@ -2,7 +2,21 @@ import "alpinejs"
 
 // Bring phoenix_html to deal with method=PUT/DELETE in forms and buttons
 import "phoenix_html"
+import { Socket } from "phoenix"
+import LiveSocket from "phoenix_live_view"
+import NProgress from "nprogress"
 
+let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
+let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}})
+
+// connect if there are any LiveViews on the page
+liveSocket.connect()
+
+// Show progress bar on live navigation and form submits
+window.addEventListener("phx:page-loading-start", info => NProgress.start())
+window.addEventListener("phx:page-loading-stop", info => NProgress.done())
+
+window.liveSocket = liveSocket
 // Uncomment below to bring Phoenix' client side socket
 // import socket from "./socket"
 

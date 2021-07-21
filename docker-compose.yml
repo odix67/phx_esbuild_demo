@@ -1,0 +1,25 @@
+version: '3'
+services:
+
+# Database
+  db:
+    image: bitnami/postgresql:13.1.0
+    container_name: db_adl_core
+    restart: unless-stopped
+    # Info : These variables are ignored when the volume already exists (databases created before).
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - db_data:/bitnami/postgresql
+      # - ./local_test_scripts/postgresql-persistence/conf/:/bitnami/postgresql/conf/
+    ports: 
+      - "5432:5432"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10M"
+        max-file: "10"
+
+volumes: 
+  db_data:
