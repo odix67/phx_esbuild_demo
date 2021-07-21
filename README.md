@@ -10,6 +10,12 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
+## For deployment
+### JavaScript
+`mix esbuild default --minify`
+
+### CSS
+`npm run deploy`
 ## Learn more
 
   * Official website: https://www.phoenixframework.org/
