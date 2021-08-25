@@ -59,10 +59,12 @@ config :demo, DemoWeb.Endpoint,
 
 # Watch static and templates for browser reloading.
 config :demo, DemoWeb.Endpoint,
+  reloadable_compilers: [:phonix, :elixir, :surface],
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
+      ~r"lib/demo_web/(live|components)/.*(ex|js)$",
       ~r"lib/demo_web/(live|views)/.*(ex)$",
       ~r"lib/demo_web/live/.*(sface)$",
       ~r"lib/demo_web/templates/.*(eex)$"

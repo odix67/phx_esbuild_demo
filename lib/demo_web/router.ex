@@ -20,6 +20,7 @@ defmodule DemoWeb.Router do
     get "/", PageController, :index
     live "/page1", PageLive
     live "/page2", SurfPageLive
+    live "/page3", SurfFormLive
   end
 
   # Other scopes may use custom stacks.

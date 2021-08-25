@@ -1,6 +1,7 @@
 /* This file is for your main application css. */
 @import "tailwindcss/base";
 @import "tailwindcss/components";
+@import "ol/ol.css";
 @import "tailwindcss/utilities";
 
 /* Alerts and form errors */
